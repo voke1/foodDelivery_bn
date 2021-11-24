@@ -2,23 +2,15 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from "@nestjs/mongoose";
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserController } from './users/users.controller';
-import { UserService } from './users/user.service';
-import { SmeController } from './smes/smes.controller';
-import { userSchema } from './users/schemas/user.schema';
-import { ConfigModule } from "@nestjs/config";
+import { UserController } from './user/user.controller';
+import { MarketsController } from './markets/markets.controller';
+import { MarketsService } from './markets/markets.service';
+import { UserService } from './user/user.service';
 import { ResponseService } from './utils/response-handler.service';
-import { TokenService } from './utils/jwt.service';
-import { SmeService } from './smes/smes.service';
-import { smeSchema } from './smes/schemas/sme.schema';
-import { AppointmentService } from './appointments/.service';
-import { AptController } from './appointments/.controller';
-import { LocationService } from './locations/.service';
-import { LocationController } from './locations/.controller';
-import { OffersController } from './offers/.controller';
-import { OfferService } from './offers/.service';
-import { SaloonController } from './saloonservice/.controller';
-import { SaloonService } from './saloonservice/.service';
+import { userSchema } from './user/schemas/user.schema';
+import { ConfigModule } from "@nestjs/config";
+import { marketSchema } from './markets/schemas/market.schema'
+
 
 
 const configuration = () => ({
@@ -34,8 +26,7 @@ const configuration = () => ({
   imports: [
     MongooseModule.forFeature([
       { name: "User", schema: userSchema },
-      { name: "Sme", schema: smeSchema },
-
+      { name: "Market", schema: marketSchema},
     ]),
 
     ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
@@ -43,24 +34,16 @@ const configuration = () => ({
   ],
 
   controllers: [
-    AppController,
-    UserController,
-    SmeController,
-    AptController,
-    LocationController,
-    OffersController,
-    SaloonController
+AppController, 
+UserController,
+MarketsController
   ],
   providers: [
     AppService,
     UserService,
+    MarketsService,
     ResponseService,
-    TokenService,
-    SmeService,
-    AppointmentService,
-    LocationService,
-    SaloonService,
-    OfferService
+
   ],
 })
-export class AppModule { }
+export class AppModule {}
