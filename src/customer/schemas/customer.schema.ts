@@ -4,7 +4,7 @@
 import * as mongoose from 'mongoose';
 import { Schema } from 'mongoose';
 
-export const userSchema = new Schema({
+export const customerSchema = new Schema({
 
   firstName: {
     type: String,
@@ -21,6 +21,16 @@ export const userSchema = new Schema({
     min: 5,
     max: 100,
   },
+  foodId: {
+    type: String,
+    min: 5,
+    max: 100,
+  },
+  paymentId: {
+    type: String,
+    min: 5,
+    max: 100,
+  },
   password: {
     type: String,
     min: 8,
@@ -30,8 +40,5 @@ export const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  }
+  
 });

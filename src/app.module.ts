@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from "@nestjs/mongoose";
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserController } from './user/user.controller';
+import { CustomerController } from './customer/customer.controller';
 import { MarketsController } from './markets/markets.controller';
 import { MarketsService } from './markets/markets.service';
-import { UserService } from './user/user.service';
+import { CustomerService } from './customer/customer.service';
 import { ResponseService } from './utils/response-handler.service';
-import { userSchema } from './user/schemas/user.schema';
+import { customerSchema } from './customer/schemas/customer.schema';
 import { ConfigModule } from "@nestjs/config";
 import { marketSchema } from './markets/schemas/market.schema'
 
@@ -25,7 +25,7 @@ const configuration = () => ({
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: "User", schema: userSchema },
+      { name: "Customer", schema: customerSchema },
       { name: "Market", schema: marketSchema},
     ]),
 
@@ -35,12 +35,12 @@ const configuration = () => ({
 
   controllers: [
 AppController, 
-UserController,
+CustomerController,
 MarketsController
   ],
   providers: [
     AppService,
-    UserService,
+    CustomerService,
     MarketsService,
     ResponseService,
 
